@@ -4,6 +4,7 @@ from bs4.element import NavigableString, Tag
 from dataclasses import dataclass
 from datetime import datetime 
 from sys import argv
+from json import JSONDecoder, JSONEncoder, dumps
 
 @dataclass
 class TimeSegment:
@@ -20,18 +21,30 @@ class Location:
     """ 
     A data class that represents a dining location on campus
     """
-    location_name: str
-    segments: [TimeSegment]
+    name: str
+    hours: [TimeSegment]
+
+class LocationEncoder(JSONEncoder):
+    def default(self, o):
+        if isinstance(o, Location):
+            return {
+                'name': o.name,
+                'hours': list(map(lambda ts: ts.hours, o.hours))
+            }
+        else:
+            return json.JSONEncoder.default(self,o) 
+        
 
 def pretty_print_locations(locations):
     """ 
     Pretty prints the hours of a all dining locations in a human readable
     format. 
     """
+    print(dumps(locations, cls=LocationEncoder))
     for location in locations:
-        print(location.location_name)
+        print(location.name)
         print("=====")
-        for time_segment in location.segments:
+        for time_segment in location.hours:
             print(time_segment.hours)
         print("\n")
 
@@ -71,7 +84,8 @@ def fetch_locations(day, month, year):
                 else:
                     hours = "Closed"
 
-                location.segments.append(TimeSegment(hours))
+                location.hours.append(TimeSegment(hours))
+                print(location.__dict__)
     lst.append(location)
     return lst
 
