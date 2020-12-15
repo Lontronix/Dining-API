@@ -40,7 +40,6 @@ def pretty_print_locations(locations):
     Pretty prints the hours of a all dining locations in a human readable
     format. 
     """
-    print(dumps(locations, cls=LocationEncoder))
     for location in locations:
         print(location.name)
         print("=====")
@@ -85,9 +84,11 @@ def fetch_locations(day, month, year):
                     hours = "Closed"
 
                 location.hours.append(TimeSegment(hours))
-                print(location.__dict__)
     lst.append(location)
     return lst
+    
+def fetch_locations_json(day, month, year):
+    return dumps(fetch_locations(day, month, year), cls=LocationEncoder)
 
 def main():
 
