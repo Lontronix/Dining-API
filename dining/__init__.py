@@ -1,6 +1,7 @@
+"""
+An API that displays the hours of operation for dining locations on campus
+"""
+
 from flask import Flask
 
-print(__name__)
-
 app = Flask(__name__)
-
