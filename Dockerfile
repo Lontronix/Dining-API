@@ -9,4 +9,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["gunicorn", "dining:app". "--bind=0.0.0.0:8080", "--access-logfile=-"]
+CMD ["gunicorn", "dining:app", "--bind=0.0.0.0:8080", "--access-logfile=-"]
