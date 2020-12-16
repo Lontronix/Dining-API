@@ -2,7 +2,8 @@
 
 from datetime import datetime
 from flask import request
-from dining import app
+# pylint: disable=cyclic-import
+from . import app
 from .scraper import fetch_locations_json
 
 @app.route('/api/v1/hours', methods=['GET'])
