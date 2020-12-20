@@ -1,4 +1,4 @@
-FROM python:3.8-alpine
+FROM registry.access.redhat.com/ubi8/python-38 
 LABEL maintainer="Lonnie Gerol <lonnie@lonniegerol.com>"
 
 WORKDIR /opt/dining
