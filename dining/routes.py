@@ -1,7 +1,7 @@
 """Routes"""
 
 from datetime import datetime
-from flask import request
+from flask import request, Response
 # pylint: disable=cyclic-import
 from . import app
 from .scraper import fetch_locations_json
@@ -21,4 +21,5 @@ def fetch_hours():
         day = todays_date.day
         month = todays_date.month
         year = todays_date.year
-    return fetch_locations_json(day, month, year)
+
+    return Response(fetch_locations_json(day, month, year), mimetype='application/json')
