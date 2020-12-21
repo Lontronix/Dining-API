@@ -89,7 +89,7 @@ def fetch_locations_json(day, month, year):
     """
     fetches the hours for all dining locations on campus in a JSON block.
     """
-    return dumps(fetch_locations(day, month, year), cls=LocationEncoder)
+    return dumps({'locations':fetch_locations(day, month, year)}, cls=LocationEncoder)
 
 def main():
     """
