@@ -12,3 +12,7 @@ requirements.txt` to install the required dependencies.
 If your running on linux:
 - build the container using `podman build -t dining .`
 - run the container using `podman run -p 8080:8080 dining` 
+
+If your running on macOS or Windows:
+- build the container using `Docker build -t dining-api .`
+- run the container using `Docker run -p 8080:8080 dining-api`
